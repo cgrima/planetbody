@@ -30,7 +30,7 @@ class Body:
         self.ascnode = {'val':ascnode, 'unit':'deg'}  # Ascending node
 
     def area(self):
-        val = ellispoid.area(self.radius['val']['a'],
+        val = ellipsoid.area(self.radius['val']['a'],
                              self.radius['val']['c'])
         return {'val':val, 'unit':'m^2'}
 
@@ -60,6 +60,58 @@ class Body:
         return {'val':val, 'unit':'m'}
 
     def gravity_mean(self):
-        val = ellispoid.gravity(self.radius_mean()['val'], self.mass['val'])
+        val = ellipsoid.gravity(self.radius_mean()['val'], self.mass['val'])
         return {'val':val, 'unit':'m.s^{-2}'}
 
+    def report(self):
+        buff = []
+        add = buff.append
+        add(self.name+' ('+self.acronym+') is a '+self.category+
+            ' orbiting '+self.parent+'\n')
+        add('\n')
+        add('\t[Physical Properties]\n')
+        add('\tMass           = %.2e %s\n' % (self.mass['val'],
+                                              self.mass['unit']))
+        add('\tRadius (Mean)  = %.2e %s\n' % (self.radius_mean()['val'],
+                                              self.radius_mean()['unit']))
+        add('\tRadius (Equ.1) = %.2e %s\n' % (self.radius['val']['a'],
+                                              self.radius['unit']))
+        add('\tRadius (Equ.2) = %.2e %s\n' % (self.radius['val']['b'],
+                                              self.radius['unit']))
+        add('\tRadius (Polar) = %.2e %s\n' % (self.radius['val']['c'],
+                                              self.radius['unit']))
+        add('\tFlattening     = %.2e %s\n' % (self.flattening()['val'],
+                                              self.flattening()['unit']))
+        add('\tEllipticity    = %.2e %s\n' % (self.ellipticity()['val'],
+                                              self.ellipticity()['unit']))
+        add('\tSurface Area   = %.2e %s\n' % (self.area()['val'],
+                                              self.area()['unit']))
+        add('\tVolume         = %.2e %s\n' % (self.volume()['val'],
+                                              self.volume()['unit']))
+        add('\tDensity        = %.2e %s\n' % (self.density()['val'],
+                                              self.density()['unit']))
+        add('\tMean Gravity   = %.2e %s\n' % (self.gravity_mean()['val'],
+                                              self.gravity_mean()['unit']))
+        add('\n')
+        add('\t[Orbital Properties]\n')
+        add('\tRotation Period    = %.2e %s\n' % (self.rotation['val'],
+                                                  self.rotation['unit']))
+        add('\tRotation Axis Tilt = %.2e %s\n' % (self.axtilt['val'],
+                                                  self.axtilt['unit']))
+        add('\tPeriapsis          = %.2e %s\n' % (self.periapsis['val'],
+                                                  self.periapsis['unit']))
+        add('\tApoapsis           = %.2e %s\n' % (self.apoapsis['val'],
+                                                  self.apoapsis['unit']))
+        add('\tSemi-Major axis    = %.2e %s\n' % (self.semimaj['val'],
+                                                  self.semimaj['unit']))
+        add('\tOrbit Inclination  = %.2e %s\n' % (self.inclination['val'],
+                                                  self.inclination['unit']))
+        add('\tPeriapsis Argument = %.2e %s\n' % (self.periarg['val'],
+                                                  self.periarg['unit']))
+        add('\tAscending Node     = %.2e %s\n' % (self.ascnode['val'],
+                                                  self.ascnode['unit']))
+        
+        out = "".join(buff)
+        print(out)
+
+  

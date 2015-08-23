@@ -5,6 +5,7 @@ Author: C. Grima (cyril.grima@gmail.com)
 
 from planetbody.Classdef import Body
 from planetbody import europa_func
+import numpy as np
 
 
 earth = Body('planet',  # category
@@ -42,8 +43,8 @@ europa = Body('moon',  # category
               664792e3,  # periaspsis radius [m]
               0.1,  # rotation axis tilt [deg]
               0.466,  # orbit plan inclination [deg]
-              -1,  # longitude of the periapsis argument [deg]
-              -1  # Ascending node [deg]
+              np.nan,  # longitude of the periapsis argument [deg]
+              np.nan  # Ascending node [deg]
              )
 europa.exosphere = europa_func.exosphere
 
