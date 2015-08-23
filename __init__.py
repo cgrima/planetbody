@@ -2,4 +2,4 @@
 Author: C. Grima (cyril.grima@gmail.com)
 """
 
-__all__ = ['earth', 'europa', 'mars']
+from params import *
