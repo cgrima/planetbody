@@ -30,29 +30,24 @@ class Body:
         self.ascnode = {'val':ascnode, 'unit':'deg'}  # Ascending node
 
     def area(self):
-        val = ellipsoid.area(self.radius['val']['a'],
-                             self.radius['val']['c'])
+        val = ellipsoid.area(self.radius['val'])
         return {'val':val, 'unit':'m^2'}
 
     def density(self):
         val = ellipsoid.density(self.mass['val'],
-                                self.radius['val']['a'],
-                                self.radius['val']['c'])
+                                self.radius['val'])
         return {'val':val, 'unit':'kg.m^{-3}'}
 
     def ellipticity(self):
-        val = ellipsoid.ellipticity(self.radius['val']['a'],
-                                    self.radius['val']['c'])
+        val = ellipsoid.ellipticity(self.radius['val'])
         return {'val':val, 'unit':None}
 
     def flattening(self):
-        val = ellipsoid.flattening(self.radius['val']['a'],
-                                   self.radius['val']['c'])
+        val = ellipsoid.flattening(self.radius['val'])
         return {'val':val, 'unit':None}
 
     def volume(self):
-        val = ellipsoid.volume(self.radius['val']['a'],
-                               self.radius['val']['c'])
+        val = ellipsoid.volume(self.radius['val'])
         return {'val':val, 'unit':'m^{-3}'}
 
     def radius_mean(self):
