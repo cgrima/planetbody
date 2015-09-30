@@ -17,19 +17,16 @@ def area(rad):
         {'a', 'b', 'c'} Equatorial1, Equatorial2, and polar radius
     """
     a, b, c = rad['a'], rad['b'], rad['c']
-    if c and c != a:  # spheroid
-        b = a
-        e = ellipticity(a, c)
-        if a > c:  # oblate
-            phi = arccos(c/a)
-            m = (a**2 * (b**2 - c**2)) / (b**2 * (a**2 - c**2))
-            tmp = ellipeinc(phi, m)*sin(phi)**2 + ellipkinc(phi, m)*cos(phi)**2
-            output = 2*pi*(c**2 + a*b*tmp/sin(phi))
-        elif a < c:  # prolate
-            output = 0.
-    else:  #sphere
-        output = 4*pi*a**2
-    return output
+
+    if (a != c) and (b != c): #spheroid
+        k = a**2*(b**2-c**2) / (b**2*(a**2-c**2))
+        phi = np.arccos(c/a)
+        tmp = ellipeinc(phi, k)*sin(phi)**2 + ellipkinc(phi, k)*cos(phi)**2
+        out = 2*pi*c**2 + tmp*2*pi*a*b/sin(phi) 
+    else: #sphere
+        out = 4*pi*a**2
+
+    return out
 
 
 def density(mass, rad):
@@ -41,7 +38,7 @@ def density(mass, rad):
         {'a', 'b', 'c'} Equatorial1, Equatorial2, and polar radius
     """
     a, b, c = rad['a'], rad['b'], rad['c']
-    return mass/volume(a, c)
+    return mass/volume(rad)
 
 
 def ellipticity(rad):
@@ -122,15 +119,15 @@ def lonlat2xyz(lon, lat, rad):
     return x, y, z
 
 
-def radius_volumic(volume):
+def radius_volumic(vol):
     """Volumic radius
 
     Arguments
     ---------
-    volume : string
+    vol : string
         body volume
 	"""
-    return (3.*volume/4/pi)**(1/3.)
+    return (3.*vol/4/pi)**(1/3.)
 
 
 def volume(rad):
@@ -142,9 +139,5 @@ def volume(rad):
         {'a', 'b', 'c'} Equatorial1, Equatorial2, and polar radius
     """
     a, b, c = rad['a'], rad['b'], rad['c']
-    if c and c != a:
-        output = (4./3)*pi*a**2*c
-    else:
-        output = (4./3)*pi*a**3
-    return output
+    return (4./3)*pi*a*b*c
 

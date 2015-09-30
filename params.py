@@ -11,7 +11,7 @@ import numpy as np
 earth = Body('planet',  # category
              'Earth',  # name
              'terrestrial',  # adjective
-             'S III',  # acronym
+             'Sun III',  # acronym
              'Sun',  # parent body
              5.97219e24,  # mass [kg]
              {'a':6378.137e3,
@@ -31,7 +31,7 @@ earth = Body('planet',  # category
 europa = Body('moon',  # category
               'Europa',  # name
               'Europan',  # adjective
-              'J II',  # acronym
+              'Jupiter II',  # acronym
               'Jupiter',  # parent body
               4.7998e22,  # mass [kg]
               {'a':1560.8e3,
@@ -52,7 +52,7 @@ europa.exosphere = europa_func.exosphere
 mars = Body('planet',  # category
             'Mars',  # name
             'Martian',  # adjective
-            'S IV',  # acronym
+            'Sun IV',  # acronym
             'Sun',  # parent body
             6.4185e23,  # mass [kg]
             {'a':3396.2e3,
@@ -67,3 +67,23 @@ mars = Body('planet',  # category
             286.537,  # longitude of the periapsis argument [deg]
             49.562  # Ascending node [deg]
            )
+
+
+titan = Body('moon',  # category
+             'Titan',  # name
+             'Titanian',  # adjective
+             'Saturn VI',  # acronym
+             'Saturn',  # parent body
+             1.3452e23,  # mass [kg]
+             {'a':2576e3,
+              'b':2576e3,
+              'c':2576e3}, # radius [m]
+             15.945,  # rotation [days]
+             1221870e3,  # semimajor axis [m]
+             1257060e3,  # apoapsis radius [m]
+             1186680e3,  # periaspsis radius [m]
+             0.,  # rotation axis tilt [deg]
+             0.34854,  # orbit plan inclination [deg]
+             np.nan,  # longitude of the periapsis argument [deg]
+             np.nan  # Ascending node [deg]
+            )
