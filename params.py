@@ -1,10 +1,9 @@
 """
-Fundamenta parameters for planetary bodies
-Author: C. Grima (cyril.grima@gmail.com)
+Fundamental parameters for planetary bodies
 """
 
-from planetbody.Classdef import Body
-from planetbody import europa_func
+from .Classdef import Body
+from .europa_func import *
 import numpy as np
 
 
@@ -46,7 +45,7 @@ europa = Body('moon',  # category
               np.nan,  # longitude of the periapsis argument [deg]
               np.nan  # Ascending node [deg]
              )
-europa.exosphere = europa_func.exosphere
+europa.exosphere = exosphere
 
 
 mars = Body('planet',  # category

@@ -1,5 +1,7 @@
 """Various planetary laws and properties
-Author: C. Grima (cyril.grima@gmail.com)
 """
+__author__ = "Cyril Grima"
 
-from params import *
+__all__ = ["earth", "europa", "mars", "titan"]
+
+from .params import *
